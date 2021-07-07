@@ -7,6 +7,14 @@ else
   echo "About to run dkms install steps..."
 fi
 
+RELEASE_ID=$(lsb_release -i -s)
+RELEASE_VER=$(lsb_release -r -s)
+
+if [[ "$RELEASE_ID" == "openSUSE" && "$RELEASE_VER" == "15.3" ]]; then
+  echo "Found openSUSE 15.3"
+  export BUILDFLAGS="-DOPENSUSE_15_3"
+fi
+
 DRV_NAME=rtl8821ce
 DRV_VERSION=v5.5.2_34066.20200325
 
